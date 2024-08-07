@@ -26,6 +26,10 @@ app.use(errorHandler);
 app.use('/api/v1/proyectos',  proyectoRouter)
 app.use('/api/v1/auth', userRouter)
 
+app.get('/api/v1/health', (req, res) => {
+    res.status(200).json({ message: 'Servidor activo' });
+})
+
 conectarDB();
 
 app.listen(port, () => {
