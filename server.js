@@ -17,6 +17,8 @@ const port = process.env.PORT || 8000;
 app.use(cookieParser());
 app.use(cors({
     origin: ['http://localhost:5173', 'https://202405-client-vercel.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 }));
 app.use(helmet());
