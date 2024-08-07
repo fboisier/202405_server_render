@@ -80,11 +80,12 @@ const iniciarSesion = async (req, res) => {
         // Generar el token de acceso
         const payload = { id: usuario._id, usuario: usuario.usuario, email: usuario.email, nombre: usuario.nombre }
         const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('authToken', token, { httpOnly: true, secure: true }).json({
+        res.cookie('authToken', token, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 3600000 }).json({
             msg: '¡Inicio de sesión exitoso, cookie configurada!',
             token,
             usuario: payload
         });
+        
 
     } catch (err) {
         res.status(500).json({ msg: "Error en el servidor", err });
