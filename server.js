@@ -15,7 +15,10 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://202405-client-vercel.vercel.app'],
+    credentials: true,
+}));
 app.use(helmet());
 app.use(morgan('tiny'));
 
@@ -23,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler);
 
-app.use('/api/v1/proyectos',  proyectoRouter)
+app.use('/api/v1/proyectos', proyectoRouter)
 app.use('/api/v1/auth', userRouter)
 
 app.get('/api/v1/health', (req, res) => {
